@@ -1,0 +1,73 @@
+{
+  "title": "Image Upscaling & Face Restoration Worker",
+  "description": "AI image upscaling with Real-ESRGAN (2x/4x) and face restoration with GFPGAN. Supports photos, anime, and old photo restoration.",
+  "category": "image",
+  "env": [
+    {
+      "key": "UPSCALE_MODEL",
+      "label": "Upscale Model",
+      "description": "RealESRGAN_x4plus (general), RealESRGAN_x2plus (2x), RealESRGAN_x4plus_anime_6B (anime)",
+      "required": false,
+      "default": "RealESRGAN_x4plus",
+      "type": "string"
+    },
+    {
+      "key": "FACE_RESTORE",
+      "label": "Face Restoration",
+      "description": "gfpgan (recommended) or none",
+      "required": false,
+      "default": "gfpgan",
+      "type": "string"
+    },
+    {
+      "key": "TILE_SIZE",
+      "label": "Tile Size",
+      "description": "Tile size for processing. Lower = less VRAM. 0 = no tiling.",
+      "required": false,
+      "default": "400",
+      "type": "string"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Photo Upscale 4x + Face Restore",
+      "description": "General photo upscaling with GFPGAN face enhancement. Best for portraits and group photos.",
+      "env": {
+        "UPSCALE_MODEL": "RealESRGAN_x4plus",
+        "FACE_RESTORE": "gfpgan"
+      },
+      "gpu": "NVIDIA T4",
+      "volume_size": 5
+    },
+    {
+      "name": "Photo Upscale 4x (No Face)",
+      "description": "Pure upscaling without face restoration. Best for landscapes, products, architecture.",
+      "env": {
+        "UPSCALE_MODEL": "RealESRGAN_x4plus",
+        "FACE_RESTORE": "none"
+      },
+      "gpu": "NVIDIA T4",
+      "volume_size": 5
+    },
+    {
+      "name": "Photo Upscale 2x + Face Restore",
+      "description": "Lighter 2x upscaling with face enhancement. Faster processing.",
+      "env": {
+        "UPSCALE_MODEL": "RealESRGAN_x2plus",
+        "FACE_RESTORE": "gfpgan"
+      },
+      "gpu": "NVIDIA T4",
+      "volume_size": 5
+    },
+    {
+      "name": "Anime/Illustration Upscale 4x",
+      "description": "Optimized for anime, manga, and illustrations. Lighter model (6 blocks vs 23).",
+      "env": {
+        "UPSCALE_MODEL": "RealESRGAN_x4plus_anime_6B",
+        "FACE_RESTORE": "none"
+      },
+      "gpu": "NVIDIA T4",
+      "volume_size": 5
+    }
+  ]
+}

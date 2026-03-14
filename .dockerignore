@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+.env
+*.md
+*.png
+*.jpg
+__pycache__
+.venv
+venv
+.idea
+.vscode
+.runpod
+weights

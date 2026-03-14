@@ -1,0 +1,7 @@
+torch
+torchvision
+realesrgan
+gfpgan
+opencv-python-headless
+numpy
+runpod>=1.7.0
